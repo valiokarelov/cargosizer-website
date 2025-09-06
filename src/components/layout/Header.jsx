@@ -1,0 +1,25 @@
+import { Package } from 'lucide-react'
+
+const Header = () => {
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header-content">
+          <div className="logo">
+            <Package className="logo-icon" />
+            <span className="logo-text">CargoSizer</span>
+            <span className="logo-subtitle">Tools</span>
+          </div>
+          <nav className="nav">
+            <a href="/" className="nav-link">Home</a>
+            <a href="/calculators" className="nav-link">Calculators</a>
+            <a href="/equipment" className="nav-link">Equipment</a>
+            <a href="/carriers" className="nav-link">Carriers</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+export default Header

@@ -1,0 +1,78 @@
+{
+  "ocean": [
+    {
+      "id": "20ft",
+      "name": "20' Standard Container",
+      "category": "Ocean",
+      "internal": {
+        "length": 589.8,
+        "width": 235.2,
+        "height": 238.5
+      },
+      "volume": 33.2,
+      "maxWeight": 28200
+    },
+    {
+      "id": "40ft", 
+      "name": "40' Standard Container",
+      "category": "Ocean",
+      "internal": {
+        "length": 1203,
+        "width": 235.2,
+        "height": 238.5
+      },
+      "volume": 67.5,
+      "maxWeight": 30480
+    },
+    {
+      "id": "40hc",
+      "name": "40' High Cube Container", 
+      "category": "Ocean",
+      "internal": {
+        "length": 1203,
+        "width": 235.2,
+        "height": 269.5
+      },
+      "volume": 76.4,
+      "maxWeight": 30480
+    }
+  ],
+  "truck": [
+    {
+      "id": "48ft",
+      "name": "48' Truck Trailer",
+      "category": "Truck",
+      "internal": {
+        "length": 1463,
+        "width": 244,
+        "height": 274
+      },
+      "volume": 98.0,
+      "maxWeight": 34000
+    },
+    {
+      "id": "53ft",
+      "name": "53' Truck Trailer",
+      "category": "Truck", 
+      "internal": {
+        "length": 1615,
+        "width": 244,
+        "height": 274
+      },
+      "volume": 108.0,
+      "maxWeight": 34000
+    },
+    {
+      "id": "sprinter",
+      "name": "Sprinter Van",
+      "category": "Truck",
+      "internal": {
+        "length": 360,
+        "width": 180,
+        "height": 185
+      },
+      "volume": 12.0,
+      "maxWeight": 3500
+    }
+  ]
+}
