@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { calculateVolumeLocally } from '../../services/calculationService'
+import { calculateVolume } from '../../services/calculationService'
 import { getAllEquipment, getEquipmentByCategory } from '../../services/equipmentService'
 
 const VolumeCalculator = () => {
@@ -10,32 +10,102 @@ const VolumeCalculator = () => {
     { length: '', width: '', height: '', quantity: '' }
   ])
   const [results, setResults] = useState(null)
+  const [backendStatus, setBackendStatus] = useState('unknown')
+  const [calculating, setCalculating] = useState(false)
+  const [useBackend, setUseBackend] = useState(false) // Toggle for backend vs local
   
   // Load equipment data
   const allEquipment = getAllEquipment()
   const equipmentByCategory = getEquipmentByCategory()
 
   useEffect(() => {
-    // Use the calculation service
-    const calculationResult = calculateVolumeLocally(cargo, container, units)
-    
-    if (calculationResult) {
-      const containerInfo = allEquipment[container]
-      if (containerInfo) {
-        const utilizationPercent = calculationResult.totalVolume > 0 
-          ? (calculationResult.totalVolume / containerInfo.volume * 100).toFixed(1)
-          : '0.0'
-
-        setResults({
-          ...calculationResult,
-          containerVolume: containerInfo.volume,
-          utilization: utilizationPercent,
-          containerName: containerInfo.name,
-          maxWeight: containerInfo.maxWeight
-        })
+  const checkBackendStatus = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://freight-calculator-backend.onrender.com'}/api/health`, {
+        method: 'GET'
+      })
+      if (response.ok) {
+        setBackendStatus('connected')
+      } else {
+        setBackendStatus('disconnected')
       }
+    } catch (error) {
+      console.error('Backend connection check failed:', error)
+      setBackendStatus('disconnected')
     }
-  }, [cargo, container, units, allEquipment])
+  }
+
+  checkBackendStatus()
+}, [])
+
+useEffect(() => {
+  const performCalculation = async () => {
+    if (cargo.some(item => item.length && item.width && item.height && item.quantity)) {
+      setCalculating(true)
+      
+      try {
+        // Use the enhanced calculation service
+        const calculationResult = await calculateVolume(cargo, container, units, useBackend)
+        
+        if (calculationResult) {
+          const containerInfo = allEquipment[container]
+          if (containerInfo) {
+            // Enhanced results with spatial validation
+            const enhancedResults = {
+              ...calculationResult,
+              containerInfo,
+              containerVolume: containerInfo.volume,
+              containerName: containerInfo.name,
+              maxWeight: containerInfo.maxWeight,
+              spatiallyValid: calculationResult.spatiallyValid || false,
+              fittingIssues: calculationResult.fittingIssues || [],
+              loadingSequence: calculationResult.loadingSequence || []
+            }
+
+            // Calculate utilization based on spatial fitting if available
+            let utilizationPercent
+            if (useBackend && calculationResult.spatiallyValid !== undefined) {
+              // Use spatial calculation results only
+              const fittedVolume = parseFloat(calculationResult.fittedVolume) || 0
+                            
+              utilizationPercent = containerInfo.volume > 0 
+                ? (fittedVolume / containerInfo.volume * 100).toFixed(1)
+                : '0.0'
+              
+              // Override total volume with actual calculation
+              enhancedResults.fittedVolume = fittedVolume.toFixed(3)
+              } else {
+              // Fallback to simple volume calculation
+              const totalVolume = parseFloat(calculationResult.totalVolume) || 0
+              utilizationPercent = totalVolume > 0 
+                ? (totalVolume / containerInfo.volume * 100).toFixed(1)
+                : '0.0'
+            }
+
+            setResults({
+              ...enhancedResults,
+              utilization: utilizationPercent
+            })
+          }
+        }
+      } catch (error) {
+        console.error('Calculation failed:', error)
+        // Show user-friendly error message
+        setResults({
+          error: 'Calculation failed. Please check your inputs and try again.',
+          totalVolume: '0.000',
+          utilization: '0.0'
+        })
+      } finally {
+        setCalculating(false)
+      }
+    } else {
+      setResults(null)
+    }
+  }
+
+  performCalculation()
+}, [cargo, container, units, allEquipment, useBackend])
 
   // Add cargo item
   const addCargoItem = () => {
@@ -58,6 +128,52 @@ const VolumeCalculator = () => {
   return (
     <div>
       <h2 className="calculator-title">Volume & Container Calculator</h2>
+
+      {/* Calculation Method Toggle */}
+      <div className="form-group">
+        <label className="form-label">
+          Calculation Method
+          <span className={`backend-status ${backendStatus}`}>
+            {backendStatus === 'connected' && '🟢 Backend Connected'}
+            {backendStatus === 'disconnected' && '🔴 Backend Offline'}
+            {backendStatus === 'unknown' && '🟡 Checking Connection...'}
+          </span>
+        </label>
+        <div className="mode-buttons">
+          <button
+            onClick={() => setUseBackend(false)}
+            className={`mode-btn ${!useBackend ? 'mode-btn-active' : ''}`}
+          >
+            Simple Volume
+          </button>
+          <button
+            onClick={() => setUseBackend(true)}
+            className={`mode-btn ${useBackend ? 'mode-btn-active' : ''} ${backendStatus === 'disconnected' ? 'disabled' : ''}`}
+            disabled={backendStatus === 'disconnected'}
+          >
+            3D Spatial Fitting
+            {backendStatus === 'disconnected' && ' (Offline)'}
+          </button>
+        </div>
+        <div className="calculation-method-info">
+          {useBackend ? (
+            <p className="method-description">
+              <span className="method-icon">🎯</span>
+              Advanced 3D bin packing with real spatial constraints - shows actual fitting results
+              {backendStatus === 'disconnected' && (
+                <span className="offline-notice">
+                  <br />⚠️ Backend offline - will use local calculation as fallback
+                </span>
+              )}
+            </p>
+          ) : (
+            <p className="method-description">
+              <span className="method-icon">📊</span>
+              Basic volume calculation - assumes optimal packing (may not reflect real loading)
+            </p>
+          )}
+        </div>
+      </div>
 
       {/* Unit Selection */}
       <div className="form-group">
@@ -113,6 +229,15 @@ const VolumeCalculator = () => {
               <span className="detail-label">Power Required:</span>
               <span className="detail-value">
                 {allEquipment[container].powerRequired ? "Yes (Active)" : "No (Passive)"}
+              </span>
+            </div>
+            <div className="detail-item">
+              <span className="detail-label">Internal Dimensions:</span>
+              <span className="detail-value">
+                {allEquipment[container].dimensions ? 
+                  `${allEquipment[container].dimensions.length} × ${allEquipment[container].dimensions.width} × ${allEquipment[container].dimensions.height} cm` :
+                  'Not specified'
+                }
               </span>
             </div>
           </div>
@@ -196,106 +321,181 @@ const VolumeCalculator = () => {
         </button>
       </div>
 
+      {/* Calculation Status */}
+      {calculating && (
+        <div className="calculation-status">
+          <div className="loading-spinner"></div>
+          <span>Calculating optimal loading...</span>
+        </div>
+      )}
+
       {/* Results Section */}
-      {results && (
+      {results && !calculating && (
         <div className="results-section">
-          <h3 className="results-title">Volume Analysis</h3>
+          <h3 className="results-title">
+            {useBackend ? '3D Spatial Analysis' : 'Volume Analysis'}
+          </h3>
           
-          <div className="results-grid">
-            <div className="result-card">
-              <div className="result-label">Total Cargo Volume</div>
-              <div className="result-value">{results.totalVolume} CBM</div>
-            </div>
-            
-            <div className="result-card">
-              <div className="result-label">Container: {results.containerName}</div>
-              <div className="result-value">{results.containerVolume} CBM</div>
-            </div>
-            
-            <div className="result-card utilization-card">
-              <div className="result-label">Space Utilization</div>
-              <div className="result-value utilization-value">
-                {results.utilization}%
-                {parseFloat(results.utilization) > 100 && (
-                  <span className="overflow-warning">
-                    {(parseFloat(results.utilization) - 100).toFixed(1)}% overflow
-                  </span>
-                )}
-                {parseFloat(results.utilization) <= 100 && parseFloat(results.utilization) > 0 && (
-                  <span className="all-fit-info">
-                    All cargo will fit
-                  </span>
-                )}
-              </div>
-            </div>
-            
-            <div className="result-card">
-              <div className="result-label">Max Weight Capacity</div>
-              <div className="result-value">{results.maxWeight} kg</div>
-            </div>
-          </div>
-
-          {/* Utilization Bar */}
-          <div className="utilization-bar">
-            <div className="utilization-label">Container Utilization</div>
-            <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${Math.min(results.utilization, 100)}%` }}
-              ></div>
-            </div>
-            <div className="utilization-text">{results.utilization}% used</div>
-          </div>
-
-          {/* Cargo Details Breakdown */}
-          {results.cargoDetails && results.cargoDetails.length > 0 && (
-            <div className="cargo-breakdown">
-              <h4 className="breakdown-title">Item Breakdown</h4>
-              <div className="breakdown-table">
-                <div className="breakdown-header">
-                  <span>Item</span>
-                  <span>Dimensions</span>
-                  <span>Qty</span>
-                  <span>Unit Vol</span>
-                  <span>Total Vol</span>
-                </div>
-                {results.cargoDetails.map((detail, index) => (
-                  <div key={index} className="breakdown-row">
-                    <span>#{detail.index}</span>
-                    <span className="dimensions">{detail.dimensions}</span>
-                    <span>{detail.quantity}</span>
-                    <span>{detail.unitVolume} CBM</span>
-                    <span className="total-vol">{detail.totalVolume} CBM</span>
-                  </div>
-                ))}
-              </div>
+          {results.error && (
+            <div className="error-message">
+              <span className="error-icon">⚠️</span>
+              {results.error}
             </div>
           )}
 
-          {/* Recommendations */}
-          <div className="recommendations">
-            <h4 className="recommendations-title">Recommendations</h4>
-            <div className="recommendation-items">
-              {parseFloat(results.utilization) < 60 && (
-                <div className="recommendation warning">
-                  <span className="rec-icon">⚠️</span>
-                  <span>Low utilization - consider smaller container or consolidate shipments</span>
+          {!results.error && (
+            <>
+              <div className="results-grid">
+                <div className="result-card">
+                  <div className="result-label">Total Cargo Volume</div>
+                  <div className="result-value">{results.totalVolume} CBM</div>
+                </div>
+                
+                <div className="result-card">
+                  <div className="result-label">Container: {results.containerName}</div>
+                  <div className="result-value">{results.containerVolume} CBM</div>
+                </div>
+                
+                <div className="result-card utilization-card">
+                  <div className="result-label">
+                    {useBackend ? 'Spatial Utilization' : 'Volume Utilization'}
+                  </div>
+                  <div className="result-value utilization-value">
+                    {results.utilization}%
+                    {parseFloat(results.utilization) > 100 && (
+                      <span className="overflow-warning">
+                        {(parseFloat(results.utilization) - 100).toFixed(1)}% overflow
+                      </span>
+                    )}
+                    {parseFloat(results.utilization) <= 100 && parseFloat(results.utilization) > 0 && (
+                      <span className="all-fit-info">
+                        {useBackend && results.spatiallyValid ? 'All cargo fits spatially' : 'All cargo will fit'}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="result-card">
+                  <div className="result-label">Max Weight Capacity</div>
+                  <div className="result-value">{results.maxWeight} kg</div>
+                </div>
+              </div>
+
+              {/* Spatial Validation Results */}
+              {useBackend && results.spatiallyValid !== undefined && (
+                <div className="spatial-results">
+                  <div className={`spatial-status ${results.spatiallyValid ? 'valid' : 'invalid'}`}>
+                    <span className="status-icon">
+                      {results.spatiallyValid ? '✅' : '❌'}
+                    </span>
+                    <span className="status-text">
+                      {results.spatiallyValid ? 
+                        'All items can be physically loaded' : 
+                        'Some items cannot fit due to spatial constraints'
+                      }
+                    </span>
+                  </div>
+
+                  {results.fittingIssues && results.fittingIssues.length > 0 && (
+                    <div className="fitting-issues">
+                      <h4>Loading Issues Detected:</h4>
+                      <ul>
+                        {results.fittingIssues.map((issue, index) => (
+                          <li key={index} className="issue-item">{issue}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               )}
-              {parseFloat(results.utilization) > 85 && parseFloat(results.utilization) <= 95 && (
-                <div className="recommendation success">
-                  <span className="rec-icon">✅</span>
-                  <span>Excellent utilization - optimal container size</span>
+
+              {/* Method Comparison Warning */}
+              {!useBackend && (
+                <div className="method-warning">
+                  <span className="warning-icon">⚠️</span>
+                  <div className="warning-content">
+                    <strong>Important:</strong> This calculation assumes perfect packing efficiency. 
+                    Real loading may require more space due to cargo shape, accessibility, and loading constraints.
+                    <br />
+                    <button 
+                      onClick={() => setUseBackend(true)}
+                      className="upgrade-btn"
+                    >
+                      Use 3D Spatial Analysis for accurate results
+                    </button>
+                  </div>
                 </div>
               )}
-              {parseFloat(results.utilization) > 95 && (
-                <div className="recommendation alert">
-                  <span className="rec-icon">🚨</span>
-                  <span>Very tight fit - consider larger container for safer loading</span>
+
+              {/* Rest of existing results display */}
+              {results.cargoDetails && results.cargoDetails.length > 0 && (
+                <div className="cargo-breakdown">
+                  <h4 className="breakdown-title">Item Breakdown</h4>
+                  <div className="breakdown-table">
+                    <div className="breakdown-header">
+                      <span>Item</span>
+                      <span>Dimensions</span>
+                      <span>Qty</span>
+                      <span>Unit Vol</span>
+                      <span>Total Vol</span>
+                      {useBackend && <span>Status</span>}
+                    </div>
+                    {results.cargoDetails.map((detail, index) => (
+                      <div key={index} className="breakdown-row">
+                        <span>#{detail.index}</span>
+                        <span className="dimensions">{detail.dimensions}</span>
+                        <span>{detail.quantity}</span>
+                        <span>{detail.unitVolume} CBM</span>
+                        <span className="total-vol">{detail.totalVolume} CBM</span>
+                        {useBackend && (
+                          <span className={`fitting-status ${detail.fitted !== false ? 'fitted' : 'not-fitted'}`}>
+                            {detail.fitted !== false ? '✅ Fits' : '❌ No space'}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
-            </div>
-          </div>
+
+              {/* Enhanced Recommendations */}
+              <div className="recommendations">
+                <h4 className="recommendations-title">Recommendations</h4>
+                <div className="recommendation-items">
+                  {useBackend && results.spatiallyValid === false && (
+                    <div className="recommendation alert">
+                      <span className="rec-icon">🚨</span>
+                      <span>Spatial constraints prevent optimal loading - consider larger container or reduce cargo</span>
+                    </div>
+                  )}
+                  {parseFloat(results.utilization) < 60 && (
+                    <div className="recommendation warning">
+                      <span className="rec-icon">⚠️</span>
+                      <span>Low utilization - consider smaller container or consolidate shipments</span>
+                    </div>
+                  )}
+                  {parseFloat(results.utilization) > 85 && parseFloat(results.utilization) <= 95 && (
+                    <div className="recommendation success">
+                      <span className="rec-icon">✅</span>
+                      <span>Excellent utilization - optimal container size</span>
+                    </div>
+                  )}
+                  {parseFloat(results.utilization) > 95 && (
+                    <div className="recommendation alert">
+                      <span className="rec-icon">🚨</span>
+                      <span>Very tight fit - consider larger container for safer loading</span>
+                    </div>
+                  )}
+                  {!useBackend && parseFloat(results.utilization) > 80 && (
+                    <div className="recommendation info">
+                      <span className="rec-icon">💡</span>
+                      <span>High utilization detected - verify with 3D spatial analysis for accurate loading assessment</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       )}
     </div>

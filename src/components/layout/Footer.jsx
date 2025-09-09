@@ -20,7 +20,7 @@ const Footer = () => {
             <ul>
               <li><a href="/calculators">Weight Calculator</a></li>
               <li><a href="/equipment">Container Guide</a></li>
-              <li><a href="/calculators">Cost Estimator</a></li>
+              <li><a href="/calculators">Tracking</a></li>
               <li><a href="/carriers">Carrier Links</a></li>
             </ul>
           </div>

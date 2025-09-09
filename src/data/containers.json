@@ -1,78 +1,242 @@
 {
-  "ocean": [
-    {
-      "id": "20ft",
-      "name": "20' Standard Container",
-      "category": "Ocean",
-      "internal": {
-        "length": 589.8,
-        "width": 235.2,
-        "height": 238.5
-      },
-      "volume": 33.2,
-      "maxWeight": 28200
+  "20ft": {
+    "id": "20ft",
+    "name": "20ft Dry Van Container",
+    "category": "Ocean Containers",
+    "dimensions": {
+      "length": 589,
+      "width": 234,
+      "height": 239
     },
-    {
-      "id": "40ft", 
-      "name": "40' Standard Container",
-      "category": "Ocean",
-      "internal": {
-        "length": 1203,
-        "width": 235.2,
-        "height": 238.5
-      },
-      "volume": 67.5,
-      "maxWeight": 30480
+    "volume": 33,
+    "maxWeight": 28230,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 720,
+    "specialFeatures": [],
+    "typicalRoutes": ["ocean-standard", "intermodal"],
+    "costCategory": "standard",
+    "description": "Standard 20-foot dry van container for general cargo"
+  },
+  "40ft": {
+    "id": "40ft",
+    "name": "40ft Dry Van Container", 
+    "category": "Ocean Containers",
+    "dimensions": {
+      "length": 1203,
+      "width": 234,
+      "height": 239
     },
-    {
-      "id": "40hc",
-      "name": "40' High Cube Container", 
-      "category": "Ocean",
-      "internal": {
-        "length": 1203,
-        "width": 235.2,
-        "height": 269.5
-      },
-      "volume": 76.4,
-      "maxWeight": 30480
-    }
-  ],
-  "truck": [
-    {
-      "id": "48ft",
-      "name": "48' Truck Trailer",
-      "category": "Truck",
-      "internal": {
-        "length": 1463,
-        "width": 244,
-        "height": 274
-      },
-      "volume": 98.0,
-      "maxWeight": 34000
+    "volume": 67,
+    "maxWeight": 26700,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 720,
+    "specialFeatures": [],
+    "typicalRoutes": ["ocean-standard", "intermodal"],
+    "costCategory": "standard",
+    "description": "Standard 40-foot dry van container for general cargo"
+  },
+  "40ft-hc": {
+    "id": "40ft-hc",
+    "name": "40ft High Cube Container",
+    "category": "Ocean Containers", 
+    "dimensions": {
+      "length": 1203,
+      "width": 234,
+      "height": 269
     },
-    {
-      "id": "53ft",
-      "name": "53' Truck Trailer",
-      "category": "Truck", 
-      "internal": {
-        "length": 1615,
-        "width": 244,
-        "height": 274
-      },
-      "volume": 108.0,
-      "maxWeight": 34000
+    "volume": 76,
+    "maxWeight": 26580,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 720,
+    "specialFeatures": ["extra-height"],
+    "typicalRoutes": ["ocean-standard", "intermodal"],
+    "costCategory": "standard",
+    "description": "High cube 40-foot container with extra height for voluminous cargo"
+  },
+  "48ft-truck": {
+    "id": "48ft-truck",
+    "name": "48ft Truck Trailer",
+    "category": "Truck Trailers",
+    "dimensions": {
+      "length": 1463,
+      "width": 259,
+      "height": 279
     },
-    {
-      "id": "sprinter",
-      "name": "Sprinter Van",
-      "category": "Truck",
-      "internal": {
-        "length": 360,
-        "width": 180,
-        "height": 185
-      },
-      "volume": 12.0,
-      "maxWeight": 3500
-    }
-  ]
+    "volume": 106,
+    "maxWeight": 34000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["door-access"],
+    "typicalRoutes": ["truck-domestic"],
+    "costCategory": "standard",
+    "description": "Standard 48-foot truck trailer for domestic transport"
+  },
+  "53ft-truck": {
+    "id": "53ft-truck",
+    "name": "53ft Truck Trailer",
+    "category": "Truck Trailers",
+    "dimensions": {
+      "length": 1615,
+      "width": 259,
+      "height": 279
+    },
+    "volume": 117,
+    "maxWeight": 34000,
+    "tempRange": "Ambient", 
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["door-access"],
+    "typicalRoutes": ["truck-domestic"],
+    "costCategory": "standard",
+    "description": "Standard 53-foot truck trailer for domestic transport"
+  },
+  "sprinter": {
+    "id": "sprinter",
+    "name": "Mercedes Sprinter Van",
+    "category": "Truck Trailers",
+    "dimensions": {
+      "length": 360,
+      "width": 170,
+      "height": 180
+    },
+    "volume": 11,
+    "maxWeight": 1500,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 24,
+    "specialFeatures": ["expedited", "door-access"],
+    "typicalRoutes": ["truck-expedited"],
+    "costCategory": "premium",
+    "description": "Small van for expedited and last-mile deliveries"
+  },
+  "envirotainer": {
+    "id": "envirotainer",
+    "name": "Envirotainer RKN e1",
+    "category": "Active Temperature",
+    "dimensions": {
+      "length": 318,
+      "width": 244,
+      "height": 163
+    },
+    "volume": 12.6,
+    "maxWeight": 1600,
+    "tempRange": "+2°C to +8°C",
+    "temperatureControlled": true,
+    "powerRequired": true,
+    "maxTransitHours": 120,
+    "specialFeatures": ["pharma-qualified", "temperature-monitoring", "GPS-tracking"],
+    "typicalRoutes": ["air-pharma", "air-express"],
+    "costCategory": "premium",
+    "description": "Active temperature-controlled container for pharmaceuticals"
+  },
+  "csafe": {
+    "id": "csafe",
+    "name": "CSafe Global RAP",
+    "category": "Active Temperature",
+    "dimensions": {
+      "length": 318,
+      "width": 244,
+      "height": 163
+    },
+    "volume": 12.6,
+    "maxWeight": 1500,
+    "tempRange": "+2°C to +25°C",
+    "temperatureControlled": true,
+    "powerRequired": true,
+    "maxTransitHours": 100,
+    "specialFeatures": ["pharma-qualified", "temperature-monitoring"],
+    "typicalRoutes": ["air-pharma", "air-express"],
+    "costCategory": "premium",
+    "description": "Active pharmaceutical shipping container with precise temperature control"
+  },
+  "dokasch": {
+    "id": "dokasch",
+    "name": "DoKaSch Temperature Solutions",
+    "category": "Active Temperature",
+    "dimensions": {
+      "length": 318,
+      "width": 244,
+      "height": 163
+    },
+    "volume": 12.6,
+    "maxWeight": 1400,
+    "tempRange": "-20°C to +20°C",
+    "temperatureControlled": true,
+    "powerRequired": true,
+    "maxTransitHours": 96,
+    "specialFeatures": ["pharma-qualified", "wide-temp-range"],
+    "typicalRoutes": ["air-pharma"],
+    "costCategory": "premium",
+    "description": "Active container with wide temperature range capabilities"
+  },
+  "softbox": {
+    "id": "softbox",
+    "name": "SoftBox Insulated Shipper",
+    "category": "Passive Temperature",
+    "dimensions": {
+      "length": 60,
+      "width": 40,
+      "height": 40
+    },
+    "volume": 0.096,
+    "maxWeight": 25,
+    "tempRange": "+2°C to +8°C",
+    "temperatureControlled": true,
+    "powerRequired": false,
+    "maxTransitHours": 48,
+    "specialFeatures": ["recyclable", "lightweight"],
+    "typicalRoutes": ["air-express", "truck-expedited"],
+    "costCategory": "standard",
+    "description": "Passive insulated packaging for temperature-sensitive small shipments"
+  },
+  "skycell": {
+    "id": "skycell",
+    "name": "SkyCell Hybrid Container",
+    "category": "Passive Temperature",
+    "dimensions": {
+      "length": 318,
+      "width": 244,
+      "height": 163
+    },
+    "volume": 12.6,
+    "maxWeight": 1200,
+    "tempRange": "+2°C to +8°C",
+    "temperatureControlled": true,
+    "powerRequired": false,
+    "maxTransitHours": 120,
+    "specialFeatures": ["pharma-qualified", "reusable"],
+    "typicalRoutes": ["air-pharma"],
+    "costCategory": "premium",
+    "description": "Passive pharmaceutical container with extended temperature protection"
+  },
+  "va-q-tec": {
+    "id": "va-q-tec",
+    "name": "va-Q-tec Passive Container",
+    "category": "Passive Temperature",
+    "dimensions": {
+      "length": 120,
+      "width": 80,
+      "height": 80
+    },
+    "volume": 0.768,
+    "maxWeight": 60,
+    "tempRange": "-70°C to +20°C",
+    "temperatureControlled": true,
+    "powerRequired": false,
+    "maxTransitHours": 96,
+    "specialFeatures": ["ultra-low-temp", "pharma-qualified"],
+    "typicalRoutes": ["air-pharma", "air-express"],
+    "costCategory": "premium",
+    "description": "High-performance passive container for ultra-low temperature shipments"
+  }
 }

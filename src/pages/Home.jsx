@@ -1,10 +1,11 @@
 import { Calculator, Package, BarChart3, ExternalLink, Clock, CheckCircle, ArrowRight } from 'lucide-react'
 
+
 const Home = () => {
   const tools = [
     { icon: Calculator, name: "Weight Calculator", description: "Chargeable weight for air & ocean", link: "/calculators" },
     { icon: Package, name: "Container Guide", description: "Dimensions and capacity reference", link: "/equipment" },
-    { icon: BarChart3, name: "Cost Estimator", description: "Quick freight cost estimates", link: "/calculators" },
+    { icon: BarChart3, name: "Tracking", description: "Direct access to tracking sites", link: "/tracking" },
     { icon: ExternalLink, name: "Carrier Links", description: "Direct access to tracking sites", link: "/carriers" }
   ]
 
@@ -16,12 +17,12 @@ const Home = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-title">
-                Free Tools for
-                <span className="text-blue-600"> Freight Forwarders</span>
+                Free 
+                <span className="text-blue-600"> Logistics Professional Toolkit</span>
               </h1>
               <p className="hero-description">
-                Quick calculations, container references, and direct carrier links. 
-                Simple tools to help with your daily freight forwarding tasks.
+                Streamline your daily workflows with instant access to 
+                carrier tracking, container calculations, and logistics references designed for Logistics professionals.
               </p>
               <div className="hero-buttons">
                 <a href="/calculators" className="btn-primary">

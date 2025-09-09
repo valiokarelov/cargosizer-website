@@ -15,6 +15,7 @@ const Header = () => {
             <a href="/calculators" className="nav-link">Calculators</a>
             <a href="/equipment" className="nav-link">Equipment</a>
             <a href="/carriers" className="nav-link">Carriers</a>
+            <a href="/planning" className="nav-link">3D Planning</a>
           </nav>
         </div>
       </div>

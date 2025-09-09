@@ -9,7 +9,6 @@ const Calculators = () => {
   const tabs = [
     { id: 'weight', name: 'Weight Calculator', icon: Calculator },
     { id: 'volume', name: 'Volume Calculator', icon: Package },
-    { id: 'cost', name: 'Cost Estimator', icon: BarChart3 }
   ]
 
   return (
@@ -18,7 +17,7 @@ const Calculators = () => {
         <div className="page-header">
           <h1 className="page-title">Freight Calculators</h1>
           <p className="page-description">
-            Professional tools for weight, volume, and cost calculations
+            Professional tools for weight, volume, and container calculations
           </p>
         </div>
 
@@ -42,12 +41,7 @@ const Calculators = () => {
         <div className="calculator-container">
           {activeTab === 'weight' && <WeightCalculator />}
           {activeTab === 'volume' && <VolumeCalculator />}
-          {activeTab === 'cost' && (
-            <div className="calculator-content">
-              <h2 className="calculator-title">Cost Estimator</h2>
-              <p>Cost estimator content will go here...</p>
-            </div>
-          )}
+        
         </div>
       </div>
     </div>

@@ -1,0 +1,322 @@
+{
+  "ld-3-ake": {
+    "id": "ld-3-ake",
+    "name": "LD-3 / AKE Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 192,
+      "width": 145,
+      "height": 162
+    },
+    "volume": 4.5,
+    "maxWeight": 1588,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["narrow-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Standard narrow body aircraft lower deck container"
+  },
+  "ld-7": {
+    "id": "ld-7",
+    "name": "PAG/P1P - LD-7 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 224,
+      "width": 317,
+      "height": 163
+    },
+    "volume": 11.6,
+    "maxWeight": 5000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["wide-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Wide body aircraft lower deck container"
+  },
+  "ld-11-alp": {
+    "id": "ld-11-alp",
+    "name": "LD-11 / ALP Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 304,
+      "width": 145,
+      "height": 155
+    },
+    "volume": 6.8,
+    "maxWeight": 3176,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["wide-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Wide body aircraft lower deck container"
+  },
+  "pmc-p6p-ld": {
+    "id": "pmc-p6p-ld",
+    "name": "PMC/P6P - LD Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 317,
+      "width": 244,
+      "height": 163
+    },
+    "volume": 12.6,
+    "maxWeight": 5000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Main deck pallet for freighter aircraft"
+  },
+  "pmc-p6p-q6": {
+    "id": "pmc-p6p-q6",
+    "name": "PMC/P6P - Q6 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 317,
+      "width": 244,
+      "height": 244
+    },
+    "volume": 18.9,
+    "maxWeight": 5000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck", "high-capacity"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "High capacity main deck container"
+  },
+  "pmc-p6p-q7": {
+    "id": "pmc-p6p-q7",
+    "name": "PMC/P6P - Q7 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 317,
+      "width": 244,
+      "height": 300
+    },
+    "volume": 23.2,
+    "maxWeight": 5000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck", "maximum-height"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Maximum height main deck container"
+  },
+  "pag-p1p-q6": {
+    "id": "pag-p1p-q6",
+    "name": "PAG/P1P - Q6 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 224,
+      "width": 317,
+      "height": 244
+    },
+    "volume": 17.3,
+    "maxWeight": 5000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Main deck container for freighter aircraft"
+  },
+  "ld-1-akc": {
+    "id": "ld-1-akc",
+    "name": "LD-1 / AKC Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 233,
+      "width": 153,
+      "height": 162
+    },
+    "volume": 5.8,
+    "maxWeight": 1588,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["narrow-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Narrow body aircraft container"
+  },
+  "ld-8": {
+    "id": "ld-8",
+    "name": "LD-8 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 315,
+      "width": 153,
+      "height": 163
+    },
+    "volume": 7.8,
+    "maxWeight": 2282,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["wide-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Wide body aircraft container"
+  },
+  "ld-9-aap": {
+    "id": "ld-9-aap",
+    "name": "LD-9 / AAP Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 304,
+      "width": 213,
+      "height": 152
+    },
+    "volume": 9.8,
+    "maxWeight": 4426,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["wide-body-compatible"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Wide body aircraft container"
+  },
+  "pga-20ft": {
+    "id": "pga-20ft",
+    "name": "PGA 20ft Pallet",
+    "category": "Air Pallets",
+    "dimensions": {
+      "length": 606,
+      "width": 244,
+      "height": 244
+    },
+    "volume": 36.1,
+    "maxWeight": 11760,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck", "heavy-cargo"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "premium",
+    "description": "Large main deck pallet for heavy cargo"
+  },
+  "pla-half": {
+    "id": "pla-half",
+    "name": "PLA Half Pallet",
+    "category": "Air Pallets",
+    "dimensions": {
+      "length": 317,
+      "width": 153,
+      "height": 244
+    },
+    "volume": 11.8,
+    "maxWeight": 1588,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Half size main deck pallet"
+  },
+  "pra-16ft": {
+    "id": "pra-16ft",
+    "name": "PRA/MDP - 16ft Pallet",
+    "category": "Air Pallets",
+    "dimensions": {
+      "length": 497,
+      "width": 244,
+      "height": 244
+    },
+    "volume": 29.6,
+    "maxWeight": 7000,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Medium size main deck pallet"
+  },
+  "pyb-q6": {
+    "id": "pyb-q6",
+    "name": "PYB - Q6 Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 244,
+      "width": 139,
+      "height": 244
+    },
+    "volume": 8.3,
+    "maxWeight": 2120,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["main-deck"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "Narrow main deck container"
+  },
+  "aan": {
+    "id": "aan",
+    "name": "AAN Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 298,
+      "width": 208,
+      "height": 148
+    },
+    "volume": 9.2,
+    "maxWeight": 1588,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["special-shape"],
+    "typicalRoutes": ["air-standard"],
+    "costCategory": "standard",
+    "description": "Specialized aircraft container"
+  },
+  "a2n": {
+    "id": "a2n",
+    "name": "A2N Container",
+    "category": "Air Containers",
+    "dimensions": {
+      "length": 317,
+      "width": 223,
+      "height": 205
+    },
+    "volume": 14.5,
+    "maxWeight": 6033,
+    "tempRange": "Ambient",
+    "temperatureControlled": false,
+    "powerRequired": false,
+    "maxTransitHours": 72,
+    "specialFeatures": ["high-capacity"],
+    "typicalRoutes": ["air-freighter"],
+    "costCategory": "standard",
+    "description": "High capacity aircraft container"
+  }
+}
