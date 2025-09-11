@@ -18,24 +18,29 @@ const Contact = () => {
         name="contact" 
         method="POST" 
         data-netlify="true"
-        action="/contact-success"  // Add this line
+        action="/contact-success"
         style={{
-            background: 'white',
-            borderRadius: '12px',
-            padding: '2rem',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-            border: '1px solid #e5e7eb'
+          background: 'white',
+          borderRadius: '12px',
+          padding: '2rem',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+          border: '1px solid #e5e7eb'
         }}
-        >
+      >
         <input type="hidden" name="form-name" value="contact" />
         
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="name" style={{
-            display: 'block',
-            fontWeight: '600',
-            color: '#374151',
-            marginBottom: '0.5rem'
-          }}>Name</label>
+          <label 
+            htmlFor="name" 
+            style={{
+              display: 'block',
+              fontWeight: '600',
+              color: '#374151',
+              marginBottom: '0.5rem'
+            }}
+          >
+            Name
+          </label>
           <input 
             type="text" 
             id="name" 
@@ -53,12 +58,17 @@ const Contact = () => {
         </div>
         
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="email" style={{
-            display: 'block',
-            fontWeight: '600',
-            color: '#374151',
-            marginBottom: '0.5rem'
-          }}>Email</label>
+          <label 
+            htmlFor="email" 
+            style={{
+              display: 'block',
+              fontWeight: '600',
+              color: '#374151',
+              marginBottom: '0.5rem'
+            }}
+          >
+            Email
+          </label>
           <input 
             type="email" 
             id="email" 
@@ -76,12 +86,17 @@ const Contact = () => {
         </div>
         
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="subject" style={{
-            display: 'block',
-            fontWeight: '600',
-            color: '#374151',
-            marginBottom: '0.5rem'
-          }}>Subject</label>
+          <label 
+            htmlFor="subject" 
+            style={{
+              display: 'block',
+              fontWeight: '600',
+              color: '#374151',
+              marginBottom: '0.5rem'
+            }}
+          >
+            Subject
+          </label>
           <input 
             type="text" 
             id="subject" 
@@ -99,12 +114,17 @@ const Contact = () => {
         </div>
         
         <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="message" style={{
-            display: 'block',
-            fontWeight: '600',
-            color: '#374151',
-            marginBottom: '0.5rem'
-          }}>Message</label>
+          <label 
+            htmlFor="message" 
+            style={{
+              display: 'block',
+              fontWeight: '600',
+              color: '#374151',
+              marginBottom: '0.5rem'
+            }}
+          >
+            Message
+          </label>
           <textarea 
             id="message" 
             name="message" 
@@ -117,7 +137,8 @@ const Contact = () => {
               borderRadius: '8px',
               fontSize: '1rem',
               boxSizing: 'border-box',
-              minHeight: '120px'
+              minHeight: '120px',
+              resize: 'vertical'
             }}
           />
         </div>
@@ -143,4 +164,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default Contact;
