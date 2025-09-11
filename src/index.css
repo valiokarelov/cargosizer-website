@@ -4726,3 +4726,19 @@ button[type="submit"]:active {
     font-size: 2rem;
   }
 }
+/* Footer logo styling */
+footer .logo-text,
+footer h3,
+footer .site-name {
+  color: white !important;
+}
+
+/* If it's using an image logo, add a white filter */
+footer .logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* General footer text color */
+footer {
+  color: white;
+}
