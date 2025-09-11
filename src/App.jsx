@@ -10,7 +10,7 @@ import Equipment from './pages/Equipment'
 import Contact from './pages/Contact'
 import ContactSuccess from './pages/ContactSuccess'
 
-
+//test comment for deployment - ignore/
 function App() {
   return (
     <Router>
