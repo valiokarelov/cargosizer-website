@@ -1,1 +1,6 @@
-/*    /index.html   200
+# Netlify redirects file
+# Form submission success redirect
+/contact-success /contact-success 200
+
+# SPA fallback - must be last
+/* /index.html 200
