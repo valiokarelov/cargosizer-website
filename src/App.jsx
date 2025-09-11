@@ -8,6 +8,7 @@ import Tracking from './pages/Tracking'
 import CarrierLinks from './pages/CarrierLinks'
 import Equipment from './pages/Equipment'
 import Contact from './pages/Contact'
+import ContactSuccess from './pages/ContactSuccess'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/equipment" element={<Equipment />} />
             <Route path="/3d-planning" element={<PlanningModule />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/contact-success" element={<ContactSuccess />} />
           </Routes>
         </main>
         <Footer />
