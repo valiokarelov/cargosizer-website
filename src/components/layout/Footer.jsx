@@ -18,10 +18,10 @@ const Footer = () => {
           <div className="footer-links">
             <h3>Tools</h3>
             <ul>
-              <li><a href="/calculators">Weight Calculator</a></li>
-              <li><a href="/equipment">Container Guide</a></li>
-              <li><a href="/calculators">Tracking</a></li>
-              <li><a href="/carriers">Carrier Links</a></li>
+              <li><a href="/calculators">Weight & Volume Calculators</a></li>
+              <li><a href="/equipment">Equipment</a></li>
+              <li><a href="/tracking">Tracking</a></li>
+              <li><a href="/contact">Contact Us</a></li>
             </ul>
           </div>
         </div>
