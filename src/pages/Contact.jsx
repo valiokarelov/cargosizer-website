@@ -18,14 +18,15 @@ const Contact = () => {
         name="contact" 
         method="POST" 
         data-netlify="true"
+        action="/contact-success"  // Add this line
         style={{
-          background: 'white',
-          borderRadius: '12px',
-          padding: '2rem',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-          border: '1px solid #e5e7eb'
+            background: 'white',
+            borderRadius: '12px',
+            padding: '2rem',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+            border: '1px solid #e5e7eb'
         }}
-      >
+        >
         <input type="hidden" name="form-name" value="contact" />
         
         <div style={{ marginBottom: '1.5rem' }}>
