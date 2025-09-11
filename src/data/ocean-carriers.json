@@ -1,0 +1,110 @@
+{
+  "maersk": {
+    "id": "maersk",
+    "name": "Maersk Line",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.maersk.com/tracking/",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Dangerous Goods", "Project Cargo"]
+  },
+  "msc": {
+    "id": "msc",
+    "name": "Mediterranean Shipping Company",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.msc.com/en/track-a-shipment",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Break Bulk", "Cruise"]
+  },
+  "cma-cgm": {
+    "id": "cma-cgm",
+    "name": "CMA CGM",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.cma-cgm.com/tracking",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Ro-Ro", "Logistics"]
+  },
+  "cosco": {
+    "id": "cosco",
+    "name": "COSCO SHIPPING",
+    "type": "Container Shipping",
+    "trackingUrl": "https://elines.coscoshipping.com/ebusiness/cargoTracking",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Bulk Cargo", "Tanker", "Dry Bulk"]
+  },
+  "hapag-lloyd": {
+    "id": "hapag-lloyd",
+    "name": "Hapag-Lloyd",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.hapag-lloyd.com/en/online-business/track/track-by-container.html",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Special Cargo", "Digital Services"]
+  },
+  "evergreen": {
+    "id": "evergreen",
+    "name": "Evergreen Line",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.evergreen-line.com/emodal/stpb/stpb.do",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Heavy Lift", "Project Cargo"]
+  },
+  "yang-ming": {
+    "id": "yang-ming",
+    "name": "Yang Ming Line",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.yangming.com/e-service/Track_Trace/track_trace_cargo_tracking.aspx",
+    "trackingMethod": "container_number",
+    "regions": ["Asia", "Global"],
+    "specialties": ["Container Shipping", "Reefer", "Dangerous Goods"]
+  },
+  "hyundai-merchant": {
+    "id": "hyundai-merchant",
+    "name": "Hyundai Merchant Marine",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.hmm21.com/cms/business/ebiz/trackTrace/trackTrace/index.jsp",
+    "trackingMethod": "container_number",
+    "regions": ["Asia", "Global"],
+    "specialties": ["Container Shipping", "Bulk Cargo", "Logistics"]
+  },
+  "one-line": {
+    "id": "one-line",
+    "name": "Ocean Network Express (ONE)",
+    "type": "Container Shipping",
+    "trackingUrl": "https://ecomm.one-line.com/one-ecom/manage-shipment/track-trace",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Digital Innovation"]
+  },
+  "zim": {
+    "id": "zim",
+    "name": "ZIM Integrated Shipping",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.zim.com/tools/track-a-shipment",
+    "trackingMethod": "container_number",
+    "regions": ["Global"],
+    "specialties": ["Container Shipping", "Reefer", "Project Cargo", "Logistics"]
+  },
+  "wan-hai": {
+    "id": "wan-hai",
+    "name": "Wan Hai Lines",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.wanhai-lines.com/",
+    "trackingMethod": "container_number",
+    "regions": ["Asia"],
+    "specialties": ["Intra-Asia Services", "Container Shipping", "Feeder Services"]
+  },
+  "pil": {
+    "id": "pil",
+    "name": "Pacific International Lines",
+    "type": "Container Shipping",
+    "trackingUrl": "https://www.pilship.com/en--/120.html",
+    "trackingMethod": "container_number",
+    "regions": ["Asia", "Middle East"],
+    "specialties": ["Container Shipping", "Logistics", "Warehousing"]
+  }
+}

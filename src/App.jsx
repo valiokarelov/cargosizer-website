@@ -8,6 +8,7 @@ import Tracking from './pages/Tracking'
 import CarrierLinks from './pages/CarrierLinks'
 import Equipment from './pages/Equipment'
 
+
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/tracking" element={<Tracking />} />
             <Route path="/carriers" element={<CarrierLinks />} />
             <Route path="/equipment" element={<Equipment />} />
+            <Route path="/3d-planning" element={<PlanningModule />} />
           </Routes>
         </main>
         <Footer />

@@ -1,0 +1,110 @@
+{
+  "kuehne-nagel": {
+    "id": "kuehne-nagel",
+    "name": "Kuehne + Nagel",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://myportal.kuehne-nagel.com/login",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air Freight", "Sea Freight", "Contract Logistics", "Integrated Logistics"]
+  },
+  "dhl-global-forwarding": {
+    "id": "dhl-global-forwarding",
+    "name": "DHL Global Forwarding",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.dhl.com/global-en/home/tracking.html",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air Freight", "Ocean Freight", "Project Cargo", "Industrial Projects"]
+  },
+  "db-schenker": {
+    "id": "db-schenker",
+    "name": "DB Schenker",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.dbschenker.com/global/products/tracking",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air & Ocean Freight", "Contract Logistics", "Automotive", "Technology"]
+  },
+  "expeditors": {
+    "id": "expeditors",
+    "name": "Expeditors International",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.expeditors.com/tracking",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air & Ocean Freight", "Customs Brokerage", "Distribution Services"]
+  },
+  "panalpina": {
+    "id": "panalpina",
+    "name": "Panalpina (DSV)",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.dsv.com/en/our-solutions/track-trace",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air & Ocean Freight", "Energy & Process Industries", "Fashion & Lifestyle"]
+  },
+  "geodis": {
+    "id": "geodis",
+    "name": "GEODIS",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://espace-client.geodis.com/",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Freight Forwarding", "Contract Logistics", "Road Transport", "E-commerce"]
+  },
+  "ceva-logistics": {
+    "id": "ceva-logistics",
+    "name": "CEVA Logistics",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.cevalogistics.com/en/tracking",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Freight Management", "Contract Logistics", "Ground Transportation"]
+  },
+  "hellmann": {
+    "id": "hellmann",
+    "name": "Hellmann Worldwide Logistics",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.hellmann.com/en/services/track-and-trace",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air & Sea Freight", "Contract Logistics", "Road & Rail", "Fashion Logistics"]
+  },
+  "nippon-express": {
+    "id": "nippon-express",
+    "name": "Nippon Express",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.nipponexpress.com/tracking/",
+    "trackingMethod": "reference_number",
+    "regions": ["Asia", "Global"],
+    "specialties": ["Logistics", "Moving Services", "Fine Arts", "Healthcare Logistics"]
+  },
+  "agility": {
+    "id": "agility",
+    "name": "Agility Logistics",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.agilitylogistics.com/en/track-shipment/",
+    "trackingMethod": "reference_number",
+    "regions": ["Middle East", "Africa", "Asia"],
+    "specialties": ["Freight Forwarding", "Warehousing", "Project Logistics", "Government Services"]
+  },
+  "bollore": {
+    "id": "bollore",
+    "name": "Bolloré Logistics",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.bollore-logistics.com/en/tracking",
+    "trackingMethod": "reference_number",
+    "regions": ["Africa", "Global"],
+    "specialties": ["Freight Forwarding", "Logistics", "Energy Support", "Mining & Metals"]
+  },
+  "dsv": {
+    "id": "dsv",
+    "name": "DSV",
+    "type": "Freight Forwarder",
+    "trackingUrl": "https://www.dsv.com/en/our-solutions/track-trace",
+    "trackingMethod": "reference_number",
+    "regions": ["Global"],
+    "specialties": ["Air & Sea", "Road", "Solutions", "Healthcare & Life Sciences"]
+  }
+}

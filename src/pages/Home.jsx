@@ -1,12 +1,11 @@
-import { Calculator, Package, BarChart3, ExternalLink, Clock, CheckCircle, ArrowRight } from 'lucide-react'
-
+import { Calculator, Package, BarChart3, Box, Clock, CheckCircle, ArrowRight } from 'lucide-react'
 
 const Home = () => {
   const tools = [
-    { icon: Calculator, name: "Weight Calculator", description: "Chargeable weight for air & ocean", link: "/calculators" },
+    { icon: Calculator, name: "Weight & Volume Calculators", description: "Chargeable weight and interactive volume calculations", link: "/calculators" },
     { icon: Package, name: "Container Guide", description: "Dimensions and capacity reference", link: "/equipment" },
     { icon: BarChart3, name: "Tracking", description: "Direct access to tracking sites", link: "/tracking" },
-    { icon: ExternalLink, name: "Carrier Links", description: "Direct access to tracking sites", link: "/carriers" }
+    { icon: Box, name: "3D Planning and Equipment Optimization", description: "Advanced planning and optimization tools", link: "/3d-planning" }
   ]
 
   return (
@@ -24,14 +23,6 @@ const Home = () => {
                 Streamline your daily workflows with instant access to 
                 carrier tracking, container calculations, and logistics references designed for Logistics professionals.
               </p>
-              <div className="hero-buttons">
-                <a href="/calculators" className="btn-primary">
-                  Start Using Tools <ArrowRight className="btn-icon" />
-                </a>
-                <a href="/equipment" className="btn-secondary">
-                  View Container Guide
-                </a>
-              </div>
               <div className="hero-note">
                 <CheckCircle className="note-icon" />
                 100% Free • No Registration Required
