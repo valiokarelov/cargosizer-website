@@ -9,8 +9,8 @@ import CarrierLinks from './pages/CarrierLinks'
 import Equipment from './pages/Equipment'
 import Contact from './pages/Contact'
 import ContactSuccess from './pages/ContactSuccess'
+import TimeZoneDisplay from './pages/TimeZoneDisplay'
 
-//test comment for deployment - ignore/
 function App() {
   return (
     <Router>
@@ -27,6 +27,7 @@ function App() {
             <Route path="/3d-planning" element={<PlanningModule />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/contact-success" element={<ContactSuccess />} />
+            <Route path="/timezones" element={<TimeZoneDisplay />} />
           </Routes>
         </main>
         <Footer />
