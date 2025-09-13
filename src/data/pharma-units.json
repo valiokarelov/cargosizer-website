@@ -1,104 +1,54 @@
 {
-  "active": [
-    {
-      "id": "envirotainer_rku",
+  "active": [{
       "name": "Envirotainer RKN e1",
-      "category": "Active Temp",
+      "description": "Active temperature-controlled air cargo container",
+      "category": "Active Temperature",
       "internal": {
         "length": 318,
-        "width": 224,
+        "width": 224, 
         "height": 163
       },
-      "volume": 11.6,
-      "maxWeight": 6800,
+      "external": {
+        "length": 325,
+        "width": 235,
+        "height": 175
+      },
+      "volume": 8.9,
+      "maxWeight": 1588,
       "tempRange": "+2°C to +8°C",
-      "powerRequired": true
-    },
-    {
-      "id": "csafe_raf",
-      "name": "CSafe RAF",
-      "category": "Active Temp",
-      "internal": {
-        "length": 318,
-        "width": 224,
-        "height": 163
-      },
-      "volume": 11.6,
-      "maxWeight": 6800,
-      "tempRange": "+2°C to +25°C",
-      "powerRequired": true
-    },
-    {
-      "id": "dokasch_dkp",
-      "name": "DoKaSch DKP 2142",
-      "category": "Active Temp",
-      "internal": {
-        "length": 318,
-        "width": 224,
-        "height": 163
-      },
-      "volume": 11.6,
-      "maxWeight": 6800,
-      "tempRange": "+2°C to +25°C",
-      "powerRequired": true
+      "temperatureControlled": true,
+      "powerRequired": true,
+      "maxTransitHours": 120,
+      "specialFeatures": ["GPS tracking", "Data logging"],
+      "weightLimit": 1588,
+      "volumeLimit": 11.6
     }
   ],
-  "passive": [
-    {
-      "id": "softbox_s",
-      "name": "SoftBox Small",
-      "category": "Passive Temp",
+
+
+  "passive": [ {
+      "name": "Envirotainer RKN e1",
+      "description": "Active temperature-controlled air cargo container",
+      "category": "Active Temperature",
       "internal": {
-        "length": 60,
-        "width": 40,
-        "height": 50
+        "length": 318,
+        "width": 224, 
+        "height": 163
       },
-      "volume": 0.12,
-      "maxWeight": 25,
-      "tempRange": "+2°C to +8°C (48-96hrs)",
-      "powerRequired": false
-    },
-    {
-      "id": "softbox_m",
-      "name": "SoftBox Medium",
-      "category": "Passive Temp",
-      "internal": {
-        "length": 80,
-        "width": 60,
-        "height": 70
+      "external": {
+        "length": 325,
+        "width": 235,
+        "height": 175
       },
-      "volume": 0.34,
-      "maxWeight": 50,
-      "tempRange": "+2°C to +8°C (48-96hrs)",
-      "powerRequired": false
-    },
-    {
-      "id": "skycell_1500",
-      "name": "SkyCell 1500L",
-      "category": "Passive Temp",
-      "internal": {
-        "length": 120,
-        "width": 80,
-        "height": 120
-      },
-      "volume": 1.15,
-      "maxWeight": 1500,
-      "tempRange": "+2°C to +8°C (120hrs)",
-      "powerRequired": false
-    },
-    {
-      "id": "va_q_tec",
-      "name": "va-Q-tec TempGuard",
-      "category": "Passive Temp",
-      "internal": {
-        "length": 100,
-        "width": 60,
-        "height": 80
-      },
-      "volume": 0.48,
-      "maxWeight": 100,
-      "tempRange": "+2°C to +8°C (72hrs)",
-      "powerRequired": false
+      "volume": 8.9,
+      "maxWeight": 1588,
+      "tempRange": "+2°C to +8°C",
+      "temperatureControlled": true,
+      "powerRequired": true,
+      "maxTransitHours": 120,
+      "specialFeatures": ["GPS tracking", "Data logging"],
+      "weightLimit": 1588,
+      "volumeLimit": 11.6
     }
   ]
 }

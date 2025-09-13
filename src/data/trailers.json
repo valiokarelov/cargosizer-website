@@ -1,0 +1,14 @@
+[
+  {
+    "id": "truck-trailer-001",
+    "name": "Standard 40ft Trailer",
+    "category": "Truck Trailers",
+    "description": "Used for general cargo transport.",
+    "dimensions": { "length": 12000, "width": 2500, "height": 3000 },
+    "volume": 75,
+    "maxWeight": 20000,
+    "tempRange": "Ambient",
+    "powerRequired": false,
+    "specialFeatures": ["Air brakes"]
+  }
+]
