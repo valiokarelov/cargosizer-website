@@ -9,7 +9,7 @@ import Equipment from './pages/Equipment'
 import Contact from './pages/Contact'
 import ContactSuccess from './pages/ContactSuccess'
 import TimeZoneDisplay from './pages/TimeZoneDisplay'
-import CargoFitterThree from './pages/CargoFitterThree'
+import CargoFitterThree from "./pages/CargoFitterThree/src/components/CargoFitterThree";
 
 function App() {
   return (

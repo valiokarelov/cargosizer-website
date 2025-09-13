@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import * as THREE from "three";
+import "../../../../styles/cargo-fitter.css";
 
 // Inlined PlacedItem type to keep this file self-contained in canvas
 interface PlacedItem {
@@ -638,7 +639,7 @@ const customPack = useCallback((container: CargoContainer, items: CargoItem[]): 
   useEffect(() => {
     if (!mountRef.current) return;
     const el = mountRef.current;
-    const width = 800, height = 560;
+    const width = 1500, height = 580;
 
     const scene = new THREE.Scene(); 
     scene.background = new THREE.Color(0xf5f7fb);
@@ -785,61 +786,49 @@ const customPack = useCallback((container: CargoContainer, items: CargoItem[]): 
 
 // -------- RENDER --------
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-gray-50 min-h-screen">
+  <div className="cargo-fitter">
+    <div className="cargo-container">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Cargo Fitter 3D</h2>
-            <p className="text-gray-600">Interactive 3D cargo loading optimization with Next.js and Three.js</p>
-          </div>
-          <button
-            onClick={() => window.history.back()}
-            className="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 flex items-center gap-2"
-          >
-            ← Back to Menu
-          </button>
-        </div>
+      <div className="cargo-section">
+        <h2>Cargo Fitter 3D</h2>
+        <p>Interactive 3D cargo loading optimization with Next.js and Three.js</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      {/* Three main sections in a row */}
+      <div className="cargo-controls">
         {/* Container Settings */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h4 className="text-lg font-semibold text-gray-800 mb-4">Container Dimensions</h4>
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Length ({units})</label>
+        <div className="cargo-section">
+          <h3>Container Dimensions</h3>
+          <div className="cargo-dimension-inputs">
+            <div className="cargo-dimension-group">
+              <label>Length ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="cargo-input"
                 value={container.length}
                 onChange={e => setContainer({ ...container, length: e.target.value })}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Width ({units})</label>
+            <div className="cargo-dimension-group">
+              <label>Width ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="cargo-input"
                 value={container.width}
                 onChange={e => setContainer({ ...container, width: e.target.value })}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Height ({units})</label>
+            <div className="cargo-dimension-group">
+              <label>Height ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="cargo-input"
                 value={container.height}
                 onChange={e => setContainer({ ...container, height: e.target.value })}
               />
             </div>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600 mb-1">Units</label>
-            <select
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-              value={units}
-              onChange={e => setUnits(e.target.value)}
-            >
+          <div className="cargo-input-group">
+            <label>Units</label>
+            <select className="cargo-input" value={units} onChange={e => setUnits(e.target.value)}>
               <option value="in">Inches (in)</option>
               <option value="ft">Feet (ft)</option>
               <option value="cm">Centimeters (cm)</option>
@@ -847,10 +836,10 @@ const customPack = useCallback((container: CargoContainer, items: CargoItem[]): 
             </select>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">Equipment Presets</label>
+          <div className="cargo-input-group">
+            <label>Equipment Presets</label>
             <select
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+              className="cargo-input"
               onChange={(e) => {
                 if (e.target.value) {
                   applyPreset(e.target.value);
@@ -861,8 +850,8 @@ const customPack = useCallback((container: CargoContainer, items: CargoItem[]): 
             >
               <option value="">-- Select Equipment --</option>
               <optgroup label="Trucks & Trailers">
-                <option value="53-truck">53&apos; Truck Trailer</option>
-                <option value="48-truck">48&apos; Truck Trailer</option>
+                <option value="53-truck">53' Truck Trailer</option>
+                <option value="48-truck">48' Truck Trailer</option>
                 <option value="sprinter">Mercedes Sprinter Van</option>
               </optgroup>
               <optgroup label="Sea Containers">
@@ -875,251 +864,208 @@ const customPack = useCallback((container: CargoContainer, items: CargoItem[]): 
           </div>
         </div>
 
-        {/* Item Input */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h4 className="text-lg font-semibold text-gray-800 mb-4">Add Cargo Item</h4>
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Length ({units})</label>
+        {/* Add Cargo Item */}
+        <div className="cargo-section">
+          <h3>Add Cargo Item</h3>
+          <div className="cargo-dimension-inputs">
+            <div className="cargo-dimension-group">
+              <label>Length ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
+                className="cargo-input"
                 value={itemInput.length}
                 onChange={e => setItemInput({ ...itemInput, length: e.target.value })}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Width ({units})</label>
+            <div className="cargo-dimension-group">
+              <label>Width ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
+                className="cargo-input"
                 value={itemInput.width}
                 onChange={e => setItemInput({ ...itemInput, width: e.target.value })}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Height ({units})</label>
+            <div className="cargo-dimension-group">
+              <label>Height ({units})</label>
               <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
+                className="cargo-input"
                 value={itemInput.height}
                 onChange={e => setItemInput({ ...itemInput, height: e.target.value })}
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Weight ({weightUnits})</label>
-              <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
-                value={itemInput.weight}
-                onChange={e => setItemInput({ ...itemInput, weight: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Weight Units</label>
-              <select
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
-                value={weightUnits}
-                onChange={e => setWeightUnits(e.target.value)}
-              >
-                <option value="lb">Pounds (lb)</option>
-                <option value="kg">Kilograms (kg)</option>
-                <option value="oz">Ounces (oz)</option>
-                <option value="g">Grams (g)</option>
-              </select>
-            </div>
+          <div className="cargo-input-group">
+            <label>Weight ({weightUnits})</label>
+            <input
+              className="cargo-input"
+              value={itemInput.weight}
+              onChange={e => setItemInput({ ...itemInput, weight: e.target.value })}
+            />
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Quantity</label>
-              <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
-                value={itemInput.quantity}
-                onChange={e => setItemInput({ ...itemInput, quantity: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Name</label>
-              <input
-                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-green-500"
-                value={itemInput.name}
-                onChange={e => setItemInput({ ...itemInput, name: e.target.value })}
-              />
-            </div>
+          <div className="cargo-input-group">
+            <label>Weight Units</label>
+            <select className="cargo-input" value={weightUnits} onChange={e => setWeightUnits(e.target.value)}>
+              <option value="lb">Pounds (lb)</option>
+              <option value="kg">Kilograms (kg)</option>
+              <option value="oz">Ounces (oz)</option>
+              <option value="g">Grams (g)</option>
+            </select>
           </div>
 
-          <div className="flex gap-4 mb-4">
-            <label className="flex items-center gap-2 text-sm text-gray-700">
+          <div className="cargo-input-group">
+            <label>Quantity</label>
+            <input
+              className="cargo-input"
+              value={itemInput.quantity}
+              onChange={e => setItemInput({ ...itemInput, quantity: e.target.value })}
+            />
+          </div>
+
+          <div className="cargo-input-group">
+            <label>Name</label>
+            <input
+              className="cargo-input"
+              value={itemInput.name}
+              onChange={e => setItemInput({ ...itemInput, name: e.target.value })}
+            />
+          </div>
+
+          <div className="cargo-checkbox-group">
+            <label>
               <input
                 type="checkbox"
                 checked={itemInput.nonStackable}
                 onChange={e => setItemInput({ ...itemInput, nonStackable: e.target.checked })}
-                className="rounded"
               />
-              Non‑stackable
+              Non-stackable
             </label>
-            <label className="flex items-center gap-2 text-sm text-gray-700">
+            <label>
               <input
                 type="checkbox"
                 checked={itemInput.nonRotatable}
                 onChange={e => setItemInput({ ...itemInput, nonRotatable: e.target.checked })}
-                className="rounded"
               />
-              Non‑rotatable
+              Non-rotatable
             </label>
           </div>
 
-          <div className="flex gap-2">
-            <button
-              onClick={addItem}
-              className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700"
-            >
+          <div className="cargo-btn-group">
+            <button onClick={addItem} className="cargo-btn cargo-btn-success">
               Add Item
             </button>
-            <button
-              onClick={clearItems}
-              className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700"
-            >
+            <button onClick={clearItems} className="cargo-btn cargo-btn-danger">
               Clear All
             </button>
-            <button
-              onClick={fitItems}
-              className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
-            >
+            <button onClick={fitItems} className="cargo-btn">
               Optimize Fit
             </button>
           </div>
-        </div>
+          </div>
 
         {/* Stats */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h4 className="text-lg font-semibold text-gray-800 mb-4">Loading Statistics</h4>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Total Items:</span>
-              <span className="font-semibold text-gray-800">{stats.totalItems}</span>
+        <div className="cargo-section">
+          <h3>Loading Statistics</h3>
+          <div className="cargo-stats">
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">{stats.totalItems}</div>
+              <div className="cargo-stat-label">Total Items</div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-green-600">✅ Fitted:</span>
-              <span className="font-semibold text-green-600">{stats.fitted}</span>
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">{stats.fitted}</div>
+              <div className="cargo-stat-label">✅ Fitted</div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-red-600">❌ Unfitted:</span>
-              <span className="font-semibold text-red-600">{stats.unfitted}</span>
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">{stats.unfitted}</div>
+              <div className="cargo-stat-label">❌ Unfitted</div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-blue-600">Space Efficiency:</span>
-              <span className="font-semibold text-blue-600">{stats.efficiency}%</span>
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">{stats.efficiency}%</div>
+              <div className="cargo-stat-label">Space Efficiency</div>
             </div>
-            <div className="border-t pt-3 mt-3">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Total Weight:</span>
-                <span className="font-semibold">
-                  {(weightFromKg(stats.totalWeight, weightUnits) || 0).toFixed(2)} {weightUnits}
-                </span>
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">
+                {(weightFromKg(stats.totalWeight, weightUnits) || 0).toFixed(1)}
               </div>
-              <div className="flex justify-between items-center mt-1">
-                <span className="text-gray-600">Fitted Weight:</span>
-                <span className="font-semibold text-green-600">
-                  {(weightFromKg(stats.fittedWeight, weightUnits) || 0).toFixed(2)} {weightUnits}
-                </span>
+              <div className="cargo-stat-label">Total Weight ({weightUnits})</div>
+            </div>
+            <div className="cargo-stat-card">
+              <div className="cargo-stat-value">
+                {(weightFromKg(stats.fittedWeight, weightUnits) || 0).toFixed(1)}
               </div>
+              <div className="cargo-stat-label">Fitted Weight ({weightUnits})</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* 3D Visualization */}
-        <div className="lg:col-span-2 bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="p-4 border-b">
-            <h4 className="text-lg font-semibold text-gray-800">3D Cargo Visualization</h4>
-            <p className="text-sm text-gray-600">
-              <span className="font-medium">Controls:</span> Drag to rotate • Scroll to zoom • 
-              <span className="text-green-600">Green = Fitted</span> • 
-              <span className="text-red-600">Red wireframe = Unfitted</span>
-            </p>
-          </div>
-          <div ref={mountRef} className="w-full" style={{ height: "560px", background: "#f8fafc" }} />
-        </div>
+      {/* 3D Visualization */}
+      <div className="cargo-visualization">
+        <h4>3D Cargo Visualization</h4>
+        <p>Controls: Drag to rotate • Scroll to zoom • Green = Fitted • Red wireframe = Unfitted</p>
+        <div ref={mountRef} style={{ height: "560px", background: "#f8fafc" }} />
+      </div>
 
-        {/* Items List */}
-        <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-4 border-b">
-            <h4 className="text-lg font-semibold text-gray-800">Items List</h4>
-          </div>
-          <div className="max-h-96 overflow-y-auto p-4">
-            {itemsRef.current.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                <p>No items added yet</p>
-                <p className="text-sm">Add items to see them here</p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {itemsRef.current.map(item => (
-                  <div
-                    key={item.id}
-                    className={`p-3 border rounded-md ${
-                      item.fitted ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
-                    }`}
-                  >
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <div className="font-semibold text-gray-800 flex items-center gap-2">
-                          {item.name}
-                          {item.nonStackable && (
-                            <span className="text-[10px] px-2 py-0.5 rounded bg-amber-200 text-amber-900">
-                              No‑stack
-                            </span>
-                          )}
-                          {item.nonRotatable && (
-                            <span className="text-[10px] px-2 py-0.5 rounded bg-sky-200 text-sky-900">
-                              No‑rotate
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {fromCm(item.length, units).toFixed(1)} × {fromCm(item.width, units).toFixed(1)} × {fromCm(item.height, units).toFixed(1)} {units}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {(weightFromKg(item.weight, weightUnits) || 0).toFixed(2)} {weightUnits}
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <div className="text-lg">{item.fitted ? "✅" : "❌"}</div>
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded hover:bg-red-200"
-                        >
-                          Remove
-                        </button>
-                      </div>
+      {/* Items List */}
+      <div className="cargo-items-section">
+        <h4>Items List</h4>
+        <div className="cargo-items-list">
+          {itemsRef.current.length === 0 ? (
+            <div className="cargo-items-empty">
+              <p>No items added yet</p>
+              <p>Add items to see them here</p>
+            </div>
+          ) : (
+            <div>
+              {itemsRef.current.map(item => (
+                <div 
+                  key={item.id} 
+                  className={`cargo-item ${item.fitted ? 'cargo-item-fitted' : 'cargo-item-unfitted'}`}
+                >
+                  <div className="cargo-item-info">
+                    <div className="cargo-item-name">{item.name}</div>
+                    <div className="cargo-item-dimensions">
+                      {fromCm(item.length, units).toFixed(1)} × {fromCm(item.width, units).toFixed(1)} × {fromCm(item.height, units).toFixed(1)} {units}
+                    </div>
+                    <div className="cargo-item-weight">
+                      {(weightFromKg(item.weight, weightUnits) || 0).toFixed(2)} {weightUnits}
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
+                  <div className="cargo-item-status">
+                    <span className="cargo-item-icon">{item.fitted ? "✅" : "❌"}</span>
+                    <button 
+                      onClick={() => removeItem(item.id)}
+                      className="cargo-item-remove"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="mt-6 bg-white rounded-lg shadow-sm p-6">
-        <h4 className="text-lg font-semibold text-gray-800 mb-3">How to Use</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
-          <div>
-            <h5 className="font-semibold text-gray-800 mb-2">1. Set Container</h5>
-            <p>Define your container dimensions or choose a preset. All units convert to centimeters internally.</p>
+      {/* How to Use */}
+      <div className="cargo-instructions">
+        <h4>How to Use</h4>
+        <div className="cargo-instructions-grid">
+          <div className="cargo-instruction-item">
+            <h5>1. Set Container</h5>
+            <p>Define your container dimensions or choose a preset.</p>
           </div>
-          <div>
-            <h5 className="font-semibold text-gray-800 mb-2">2. Add Items</h5>
-            <p>Add items with dimensions, weight, quantity, and optionally mark items non‑stackable or non‑rotatable.</p>
+          <div className="cargo-instruction-item">
+            <h5>2. Add Items</h5>
+            <p>Add items with dimensions, weight, and quantity.</p>
           </div>
-          <div>
-            <h5 className="font-semibold text-gray-800 mb-2">3. Optimize</h5>
-            <p>Click &quot;Optimize Fit&quot;. Items with identical footprints will prefer neat double‑stacking if height allows.</p>
+          <div className="cargo-instruction-item">
+            <h5>3. Optimize</h5>
+            <p>Click "Optimize Fit" to arrange items efficiently.</p>
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
